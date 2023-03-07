@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 
 function Player({url}) {
 
-  useEffect(() => { 
+  useEffect(() => {
     let audio = document.getElementById("audio");
     let playBtn = document.getElementById("play");
     let prog = document.getElementById("progress");
@@ -35,15 +35,15 @@ function Player({url}) {
     audio.ontimeupdate = function() {
       let played = audio.currentTime;
       let percent = 100 * (audio.currentTime / audio.duration);
-      prog.value = percent;
+      prog.value = `${percent}`;
   
-      played = played < 60 ? (
+      const playedTime = played < 60 ? (
         "00:" + paddZero(Math.floor(played))
       ) : (
         paddZero(Math.floor(played / 60)) + ":" + paddZero(Math.floor(played % 60))
       );
 
-      playTime.innerHTML = played;
+      playTime.innerHTML = playedTime;
     } 
   }, []);
 

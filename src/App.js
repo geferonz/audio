@@ -12,7 +12,7 @@ function App() {
     setInput(e.target.value);
   }
 
-  const handleClick = (e) => {
+  const handleClick = () => {
     setLink('');
   }
 
@@ -26,9 +26,9 @@ function App() {
     <div className="App">
       {!link.length && (
         <form onSubmit={handleSubmit}>
-          <label for="input-link">Insert the link</label>
+          <label htmlFor="input-link">Insert the link</label>
           <div>
-            <input type="text" name="link" id="input-link" placeholder="https://" defaultValue={input} onChange={handleChange} maxlength="240" autoFocus />
+            <input type="text" name="link" id="input-link" placeholder="https://" defaultValue={input} onChange={handleChange} maxLength={240} autoFocus />
             <button type="submit"><img src={ArrowRight} alt="img" /></button>
           </div>
         </form>
@@ -36,7 +36,7 @@ function App() {
       {Boolean(link.length) && (
         <div id="player">
           <button type="button" onClick={handleClick}><img src={ArrowLeft} alt="img" />Back</button>
-          <Player src={link} />
+          <Player url={link} />
         </div>
       )}
     </div>
