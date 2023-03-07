@@ -7,10 +7,15 @@ function Player({url}) {
     let audio = document.getElementById("audio");
     let playBtn = document.getElementById("play");
     let prog = document.getElementById("progress");
+    let volume = document.getElementById("volume");
     let playTime = document.getElementById("time-played");
 
     prog.addEventListener("click", function (e) {
-      audio.currentTime = e.target.value;
+      audio.currentTime = e.target.value * audio.duration / 100;
+    });
+
+    volume.addEventListener("click", function (e) {
+      audio.volume = Math.floor(e.target.value) / 100;
     });
 
     playBtn.addEventListener("click", function (e) {
@@ -45,15 +50,18 @@ function Player({url}) {
 
       playTime.innerHTML = playedTime;
     } 
-  }, []);
+  });
 
   return (
     <>
       <audio id="audio" src={url} />
       <div id="audio-box">
         <span id="play" className="fas fa-play"></span>
-        <input id="progress" type="range" defaultValue='0' />
-        <span id="time-played">00:00</span>
+        <input id="progress" type="range" defaultValue="0" name="progress" />
+        <div className="time-volume">
+          <span id="time-played">00:00</span>
+          <input id="volume" type="range" defaultValue="50" name="volume" />
+        </div>
       </div>
     </>
   );
