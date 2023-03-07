@@ -49,6 +49,11 @@ function Player({url}) {
       );
 
       playTime.innerHTML = playedTime;
+
+      if(audio.currentTime >= audio.duration) {
+        playBtn.classList.remove("fa-pause");
+        playBtn.classList.add("fa-play");
+      }
     } 
   });
 
